@@ -10,7 +10,13 @@ create table board(
     bstep number,
     bindent number    
 );
-
+drop sequence bbs_seq;
 create sequence bbs_seq;
 
 select * from board;
+select * from board where bid=8;
+
+
+delete from board where bid=1;
+delete from board;
+commit;

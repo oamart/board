@@ -16,7 +16,7 @@ import model.BoardDTO;
 /**
  * Servlet implementation class WriteController
  */
-@WebServlet("/del.do")
+//@WebServlet("/del.do")
 public class DelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

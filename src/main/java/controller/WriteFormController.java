@@ -16,7 +16,7 @@ import model.BoardDTO;
 /**
  * Servlet implementation class WriteController
  */
-@WebServlet("/wform.do")
+//@WebServlet("/wform.do")
 public class WriteFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,6 @@ public class WriteFormController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("board/write.jsp");
-		
 		rd.forward(request, response);
 	}
 

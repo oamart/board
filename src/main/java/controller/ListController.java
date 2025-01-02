@@ -16,7 +16,7 @@ import model.BoardDTO;
 /**
  * Servlet implementation class WriteController
  */
-@WebServlet("/list.do")
+//@WebServlet("/list.do")
 public class ListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,6 @@ public class ListController extends HttpServlet {
 		
 		request.setAttribute("list", lst);
 		RequestDispatcher rd = request.getRequestDispatcher("board/list.jsp");
-		
 		rd.forward(request, response);
 	}
 

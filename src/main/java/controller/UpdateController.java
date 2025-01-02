@@ -17,7 +17,7 @@ import model.BoardDTO;
 /**
  * Servlet implementation class WriteController
  */
-@WebServlet("/update.do")
+//@WebServlet("/update.do")
 public class UpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

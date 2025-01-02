@@ -23,7 +23,13 @@
          	<c:forEach var="dto" items="${requestScope.list }">
             <tr>
                <td>${dto.bid}</td>
-               <td><a href="view.do?bid=${dto.bid}">${dto.title }</a></td>
+               <td>
+               		<a href="view.do?bid=${dto.bid}">
+               		<c:forEach begin="1" end="${dto.bindent}">ㄴ
+               		</c:forEach>
+               		${dto.title }
+               		</a>
+               	</td>
                <td>${dto.writer }</td>
                <td>${dto.regDate }</td>
                <td>${dto.hit }</td>

@@ -44,7 +44,7 @@ public class BoardDAO {
 
 	public void write(String writer, String title, String content) {
 		// TODO Auto-generated method stub
-		String sql = "insert into board values(bbs_seq.nextVal, ?, ?, ?, sysdate, 0, 0, 0, 0)";
+		String sql = "insert into board values(bbs_seq.nextVal, ?, ?, ?, sysdate, 0, bbs_seq.currVal, 0, 0)";
 		
 		getConnection();
 		
@@ -70,7 +70,7 @@ public class BoardDAO {
 		ArrayList<BoardDTO> lst = new ArrayList<>();
 		getConnection();
 		if (conn != null) {
-			String sql = "select * from board";
+			String sql = "select * from board order by bgroup desc, bstep";
 			try {
 				ps = conn.prepareStatement(sql);
 				rs = ps.executeQuery(sql);
@@ -197,5 +197,56 @@ public class BoardDAO {
 			}
 		}
 		return result;
+	}
+
+	public BoardDTO replyView(String id) {
+		return getRow(id);
+	}
+
+	public void addReply(String bid, String writer, String title, String content, String bgroup, String bstep,
+			String bindent) {
+		replyOrder(bgroup, bstep);
+
+		String sql = "insert into board values(bbs_seq.nextVal, ?, ?, ?, sysdate, 0, ?, ?, ?)";
+		
+		getConnection();
+		
+		if (conn != null) {
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, title);
+				ps.setString(2, writer);
+				ps.setString(3, content);
+				ps.setString(4, bgroup);
+				ps.setInt(5, Integer.parseInt(bstep) + 1);
+				ps.setInt(6, Integer.parseInt(bindent) + 1);
+				
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+		}
+	}
+	
+	public void replyOrder(String bgroup, String bstep) {
+		String sql="UPDATE board SET bstep=bstep+1 "
+	            + "WHERE bgroup=? AND bstep > ?";
+	      
+		getConnection();
+	      
+	    try {
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, Integer.parseInt(bgroup));
+	        ps.setInt(2, Integer.parseInt(bstep));
+	         
+	        ps.executeUpdate();
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    } finally {
+	        dbClose();
+	    } 
 	}
 }
