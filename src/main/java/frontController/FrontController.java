@@ -1,6 +1,7 @@
 package frontController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,7 +62,22 @@ public class FrontController extends HttpServlet {
 		case "list.do":
 			ctrl = new List();
 			ctrl.execute(request, response);
+			/*
+			ArrayList<String> list = new ArrayList<>();
+			for(int i = 0; i < 123; i++) list.add((i+1) + " | 게시판 테스트 ....");
+			int currentPage = 1;
+			int currBlock = 0;
+			int blockSize = 5;
+			if (request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+				currBlock = (currentPage - 1) /blockSize;
+			}
+			
+			request.setAttribute("list", list);
+			request.setAttribute("currentPage", currentPage); 
+			request.setAttribute("currBlock", currBlock);*/ 
 			request.getRequestDispatcher("board/list.jsp").forward(request, response);
+//			request.getRequestDispatcher("board/listPageTest.jsp").forward(request, response);
 			break;
 		case "view.do":
 			ctrl = new View();

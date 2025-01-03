@@ -13,10 +13,18 @@ create table board(
 drop sequence bbs_seq;
 create sequence bbs_seq;
 
-select * from board;
+select * from board order by bgroup desc, bstep;
 select * from board where bid=8;
 
+select bbs.*, rownum rnum from (select * from board order by bgroup desc, bstep) bbs;
+
+select * from (select bbs.*, rownum rnum from (select * from board order by bgroup desc, bstep) bbs);
+select * from (select bbs.*, rownum rnum from (select * from board order by bgroup desc, bstep) bbs)
+ where rnum between 1 and 10;
 
 delete from board where bid=1;
 delete from board;
 commit;
+
+
+
