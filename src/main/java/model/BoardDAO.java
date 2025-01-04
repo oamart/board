@@ -65,15 +65,25 @@ public class BoardDAO {
 		}
 	}
 
-	public ArrayList<BoardDTO> list() {
+	public ArrayList<BoardDTO> list(int currentPage, int limit) {
 		// TODO Auto-generated method stub
 		ArrayList<BoardDTO> lst = new ArrayList<>();
 		getConnection();
 		if (conn != null) {
-			String sql = "select * from board order by bgroup desc, bstep";
+			String sql = "select * from ("
+					+ "select bbs.*, rownum rnum from ("
+						+ "select * from board order by bgroup desc, bstep"
+					+ ") "
+					+ "bbs) where rnum between ? and ?";
 			try {
+				// 페이지의 시작 rnum 번호
+				int startRow = (currentPage - 1) * limit + 1;
+				int endRow = startRow + limit - 1;
+				
 				ps = conn.prepareStatement(sql);
-				rs = ps.executeQuery(sql);
+				ps.setInt(1, startRow);
+				ps.setInt(2, endRow);
+				rs = ps.executeQuery();
 				while(rs.next()) {
 					int bid = rs.getInt("bid");
 					String title = rs.getString("title");
@@ -248,5 +258,24 @@ public class BoardDAO {
 	    } finally {
 	        dbClose();
 	    } 
+	}
+
+	public int getListCount() {
+		String sql="select count(*) from board";
+		int count = 0;
+		getConnection();
+	      
+	    try {
+	        ps = conn.prepareStatement(sql);
+	        rs = ps.executeQuery();
+	        if(rs.next()) {
+	        	count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    } finally {
+	        dbClose();
+	    } 
+	    return count;
 	}
 }

@@ -22,6 +22,11 @@ public class Write implements BbsController {
 		// 2. 수집된 내용을 처리하기 위한 모델(dao) 선택
 		BoardDAO dao = new BoardDAO();
 		dao.write(writer, title, content);
+		/*
+		for (int i = 0; i <= 120; i++) {
+			dao.write(writer + i, title + ".........#" + i, content);
+		}
+		*/
 	}
 
 }

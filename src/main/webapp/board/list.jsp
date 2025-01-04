@@ -40,6 +40,23 @@
       <div class="text-center">
          <a href="wform.do" class="btn btn-primary">글쓰기</a>
       </div>
+      <hr>
+      <div class="d-flex justify-content-center">
+		  <ul class="pagination">
+			<li class="page-item ${prevPage > 0 ? '':'disabled'}">
+				<a class="page-link" href="list.do?currentPage=${prevPage}">이전</a>
+			</li>
+			<c:forEach var="i" begin="${blockStart}" end="${blockEnd}">
+			<li class="page-item">
+				<a class="page-link ${currentPage == i ? 'active':'' }"
+					 href="list.do?currentPage=${i}">${i}</a>
+			</li>
+			</c:forEach>
+			<li class="page-item ${nextPage <= totalPage ? '':'disabled'}">
+				<a class="page-link" href="list.do?currentPage=${nextPage}">다음</a>
+			</li>
+		  </ul>      
+      </div>
    </div>
 </body>
 </html>
