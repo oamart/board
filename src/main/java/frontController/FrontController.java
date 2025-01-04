@@ -2,21 +2,24 @@ package frontController;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.AddReply;
-import controller.BbsController;
-import controller.Delete;
-import controller.List;
-import controller.ReplyView;
-import controller.Update;
-import controller.View;
-import controller.Write;
+import controller.board.View;
+import controller.board.AddReply;
+import controller.board.BbsController;
+import controller.board.Delete;
+import controller.board.List;
+import controller.board.ReplyView;
+import controller.board.Update;
+import controller.board.Write;
+import controller.member.MemberDelete;
+import controller.member.MemberInsert;
+import controller.member.MemberList;
+import controller.member.MemberUpdate;
 
 /**
  * Servlet implementation class FrontController
@@ -76,17 +79,40 @@ public class FrontController extends HttpServlet {
 		case "update.do":
 			ctrl = new Update();
 			ctrl.execute(request, response);
-			request.getRequestDispatcher("list.do").forward(request, response);
+			request.getRequestDispatcher("/board/list.do").forward(request, response);
 			break;
 		case "del.do":
 			ctrl = new Delete();
 			ctrl.execute(request, response);
-			request.getRequestDispatcher("list.do").forward(request, response);
+			request.getRequestDispatcher("/board/list.do").forward(request, response);
 			break;
 		case "addReply.do":
 			ctrl = new AddReply();
 			ctrl.execute(request, response);
-			response.sendRedirect("list.do");
+			response.sendRedirect("/board/list.do");
+			break;
+		case "memberList.do":
+			ctrl = new MemberList();
+			ctrl.execute(request, response);
+			response.sendRedirect("/member/userList.jsp");
+			break;
+		case "memberDelete.do":
+			ctrl = new MemberDelete();
+			ctrl.execute(request, response);
+			// 재요청
+			response.sendRedirect("/member/memberList.do");
+			break;
+		case "memberUpdate.do":
+			ctrl = new MemberUpdate();
+			ctrl.execute(request, response);
+			// 재요청
+			response.sendRedirect("/member/userList.jsp");
+			break;
+		case "memberInsert.do":
+			ctrl = new MemberInsert();
+			ctrl.execute(request, response);
+			// 재요청
+			response.sendRedirect("/member/userList.jsp");
 			break;
 		}
 	}

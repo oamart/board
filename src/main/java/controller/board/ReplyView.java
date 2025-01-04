@@ -1,4 +1,4 @@
-package controller;
+package controller.board;
 
 import java.io.IOException;
 
@@ -7,15 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.BoardDAO;
+import model.BoardDTO;
 
-public class Update implements BbsController {
+public class ReplyView implements BbsController {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BoardDAO dao = new BoardDAO();
-		request.setCharacterEncoding("utf-8");
-		int result = dao.update(request);
+		String bid = request.getParameter("bid");
+		BoardDTO dto = new BoardDAO().replyView(bid);
+		request.setAttribute("dto", dto);
 	}
 
 }

@@ -1,6 +1,7 @@
-package controller;
+package controller.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import model.BoardDAO;
 import model.BoardDTO;
 
-public class ReplyView implements BbsController {
+public class List implements BbsController {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String bid = request.getParameter("bid");
-		BoardDTO dto = new BoardDAO().replyView(bid);
-		request.setAttribute("dto", dto);
+		BoardDAO dao = new BoardDAO();
+		ArrayList<BoardDTO> lst = dao.list();
+		request.setAttribute("list", lst);
 	}
 
 }

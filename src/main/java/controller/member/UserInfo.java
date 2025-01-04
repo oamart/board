@@ -1,4 +1,4 @@
-package controller;
+package controller.member;
 
 import java.io.IOException;
 
@@ -6,19 +6,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.BoardDAO;
-import model.BoardDTO;
+import controller.board.BbsController;
+import model.UserDAO;
+import model.UserDTO;
 
-public class View implements BbsController {
+public class UserInfo implements BbsController {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String bid = request.getParameter("bid");
-		BoardDTO dto = new BoardDAO().getRow(bid);
+		// 수정할 회원번호 수집
+		int uno = Integer.parseInt(request.getParameter("uno"));
+		
+		UserDAO dao = new UserDAO();
+		UserDTO dto = dao.userInfo(uno);
+		
 		System.out.println(dto);
-
-		request.setAttribute("dto", dto);
 	}
 
 }
