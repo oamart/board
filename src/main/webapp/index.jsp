@@ -15,10 +15,5 @@
 <<<<<<< HEAD
 <body> -->
 	Welcome to Page!!!
-=======
-<body>
-	<h1>페이징 연습</h1>
-	<a href="list.do">게시판 리스트</a>
->>>>>>> branch 'main' of https://github.com/oamart/board.git
 </body>
 </html>
