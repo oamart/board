@@ -1,14 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="../include/header.jsp" %>
+
    <div class="container mt-5">
       <h3 class="text-center">리스트</h3>
       <table class="table table-border">
@@ -24,7 +18,7 @@
             <tr>
                <td>${dto.bid}</td>
                <td>
-               		<a href="view.do?bid=${dto.bid}">
+               		<a href="/view.do?bid=${dto.bid}">
                		<c:forEach begin="1" end="${dto.bindent}">ㄴ
                		</c:forEach>
                		${dto.title }
@@ -44,16 +38,16 @@
       <div class="d-flex justify-content-center">
 		  <ul class="pagination">
 			<li class="page-item ${prevPage > 0 ? '':'disabled'}">
-				<a class="page-link" href="list.do?currentPage=${prevPage}">이전</a>
+				<a class="page-link" href="/list.do?currentPage=${prevPage}">이전</a>
 			</li>
 			<c:forEach var="i" begin="${blockStart}" end="${blockEnd}">
 			<li class="page-item">
 				<a class="page-link ${currentPage == i ? 'active':'' }"
-					 href="list.do?currentPage=${i}">${i}</a>
+					 href="/list.do?currentPage=${i}">${i}</a>
 			</li>
 			</c:forEach>
 			<li class="page-item ${nextPage <= totalPage ? '':'disabled'}">
-				<a class="page-link" href="list.do?currentPage=${nextPage}">다음</a>
+				<a class="page-link" href="/list.do?currentPage=${nextPage}">다음</a>
 			</li>
 		  </ul>      
       </div>

@@ -12,13 +12,14 @@ import model.BoardDTO;
 public class View implements BbsController {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String bid = request.getParameter("bid");
 		BoardDTO dto = new BoardDAO().getRow(bid);
 		System.out.println(dto);
 
 		request.setAttribute("dto", dto);
+		return "/WEB-INF/board/view.jsp";
 	}
 
 }

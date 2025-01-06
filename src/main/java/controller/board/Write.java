@@ -11,7 +11,7 @@ import model.BoardDAO;
 public class Write implements BbsController {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 1. 파라미터(글제목, 저자, 내용) 수집
 		String writer = request.getParameter("writer");
@@ -27,6 +27,7 @@ public class Write implements BbsController {
 			dao.write(writer + i, title + ".........#" + i, content);
 		}
 		*/
+		return "list.do";
 	}
 
 }

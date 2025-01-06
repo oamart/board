@@ -13,7 +13,7 @@ import model.UserDTO;
 public class MemberUpdate implements BbsController {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 수정할 회원번호 수집
 		int uno = Integer.parseInt(request.getParameter("uno"));
@@ -36,7 +36,7 @@ public class MemberUpdate implements BbsController {
 		}else {
 			System.out.println("수정 실패!!");
 		}
-
+		return "/memberList.do";
 	}
 
 }

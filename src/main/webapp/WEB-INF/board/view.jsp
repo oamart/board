@@ -1,18 +1,12 @@
 <%@page import="model.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<%@ include file="../include/header.jsp" %>
+
 	<div class="container mt-5 border p-5 w-50 shadow rounded">
       <h3 class="text-center mt-3">글 상세보기</h3>
       <table class="table table-borderless">
-         <form action="update.do" method="post">         
+         <form action="/update.do" method="post">         
          <tr>
             <td>글번호</td>
             <td><input class="form-control" name="bid" type="text" value="${dto.bid}" readonly/></td>
@@ -37,9 +31,9 @@
             <td></td>
             <td>
                <input class="btn btn-primary" type="submit" value="수정"/>
-               <a href="del.do?bid=${dto.bid}" class="btn btn-danger">삭제</a>
-               <a href="replyView.do?bid=${dto.bid}" class="btn btn-success">댓글작성</a>
-               <a href="list.do" class="btn btn-info">리스트</a>
+               <a href="/del.do?bid=${dto.bid}" class="btn btn-danger">삭제</a>
+               <a href="/replyView.do?bid=${dto.bid}" class="btn btn-success">댓글작성</a>
+               <a href="/list.do" class="btn btn-info">리스트</a>
             </td>
          </tr>
          </form>

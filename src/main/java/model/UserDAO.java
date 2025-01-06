@@ -12,11 +12,34 @@ public class UserDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
+	public void dbClose() {
+		if(rs != null)
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(ps != null)
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(conn != null)
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	// DB에 연결한 접속객체(Connection)를 얻어오는 메소
-	public Connection getConnection() {
+	public void getConnection() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
-		String pw = "1212";		
+		String pw = "1234";		
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -26,17 +49,17 @@ public class UserDAO {
 			System.out.println("데이터베이스 연결 성공~~!");			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			return conn;
 		}
+		
 	}
 	
 	// 회원정보 저장
-	public int userInsert(UserDTO dto) {		
+	public int userInsert(UserDTO dto) {
 		String sql = "INSERT INTO users "
 				+ "VALUES(user_seq.nextVal,?,?,?,?,?,?)";
 		
-		conn = getConnection();
+		getConnection();
+		if (conn == null) return -1;
 		int n = -1;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -53,12 +76,7 @@ public class UserDAO {
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-				conn.close();
-			} catch (SQLException e) {				
-				e.printStackTrace();
-			}
+			dbClose();
 		}		
 		return n;
 	}
@@ -68,7 +86,8 @@ public class UserDAO {
 		ArrayList<UserDTO> list = new ArrayList<>();
 		
 		String sql = "SELECT * FROM users";		
-		conn = getConnection();		
+		getConnection();
+		if (conn == null) return null;
 		try {
 			ps = conn.prepareStatement(sql);			
 			rs = ps.executeQuery();
@@ -89,13 +108,7 @@ public class UserDAO {
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		} finally {
-			try {
-				rs.close();
-				ps.close();
-				conn.close();
-			} catch (SQLException e) {				
-				e.printStackTrace();
-			}
+			dbClose();
 		}		
 		return list;
 	}
@@ -113,12 +126,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {			
-				ps.close();
-				conn.close();
-			} catch (SQLException e) {				
-				e.printStackTrace();
-			}
+			dbClose();
 		}	
 		
 		return n;
@@ -128,7 +136,7 @@ public class UserDAO {
 		UserDTO dto = null;
 		
 		String sql = "SELECT * FROM users WHERE uno = ?";		
-		conn = getConnection();		
+		getConnection();		
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, uno);
@@ -151,13 +159,7 @@ public class UserDAO {
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		} finally {
-			try {
-				rs.close();
-				ps.close();
-				conn.close();
-			} catch (SQLException e) {				
-				e.printStackTrace();
-			}
+			dbClose();
 		}
 		return dto;
 	}
@@ -180,12 +182,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {			
-				ps.close();
-				conn.close();
-			} catch (SQLException e) {				
-				e.printStackTrace();
-			}
+			dbClose();
 		}	
 		return n;
 	}

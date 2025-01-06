@@ -13,7 +13,7 @@ import model.BoardDTO;
 public class List implements BbsController {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardDAO dao = new BoardDAO();
 		
 		//-------- paging 처리 설정 ----------
@@ -63,6 +63,8 @@ public class List implements BbsController {
 		request.setAttribute("nextPage", nextPage);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("totalPage", totalPage);
+		
+		return "/WEB-INF/board/list.jsp";
 	}
 
 }

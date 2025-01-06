@@ -11,11 +11,12 @@ import model.BoardDAO;
 public class Update implements BbsController {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		BoardDAO dao = new BoardDAO();
 		request.setCharacterEncoding("utf-8");
 		int result = dao.update(request);
+		return "/list.do";
 	}
 
 }

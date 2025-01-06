@@ -12,7 +12,7 @@ import model.UserDAO;
 public class MemberDelete implements BbsController {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 삭제할 회원의 uno
 		int uno = Integer.parseInt(request.getParameter("uno"));
 		
@@ -24,6 +24,7 @@ public class MemberDelete implements BbsController {
 		}else {
 			System.out.println("삭제실패!!");
 		}
+		return "/memberList.do";
 	}
 
 }

@@ -3,18 +3,9 @@
     
 <%@ include file="../include/header.jsp" %>
     
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body> -->
-
 	<div class="container">
 		<form class ="border w-50 rounded p-5 mx-auto shadow mb-5 mt-5" 
-			action="/member/memberInsert.do" method="get">
+			action="/memberInsert.do" method="get">
 			<h3 class="text-center">회원가입</h3>
 			<table class="mt-3 w-100">			
 				<tbody>

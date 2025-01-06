@@ -11,11 +11,12 @@ import model.BoardDAO;
 public class Delete implements BbsController {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		BoardDAO dao = new BoardDAO();
 		String bid = request.getParameter("bid");
 		int result = dao.delete(bid);
+		return "/list.do";
 	}
 
 }

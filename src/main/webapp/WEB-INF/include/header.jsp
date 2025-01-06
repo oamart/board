@@ -13,16 +13,16 @@
 		  <div class="container-fluid">
 		    <ul class="navbar-nav">
 		      <li class="nav-item">
-		        <a class="nav-link active" href="/board">Home</a>
+		        <a class="nav-link active" href="/">Home</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="/board/user.do">회원가입</a>
+		        <a class="nav-link" href="/user.do">회원가입</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="/board/memberList.do">회원리스트</a>
+		        <a class="nav-link" href="/memberList.do">회원리스트</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="/board/list.do">게시판리스트</a>
+		        <a class="nav-link" href="/list.do">게시판리스트</a>
 		      </li>
 		    </ul>
 		  </div>

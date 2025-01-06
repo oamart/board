@@ -16,13 +16,14 @@ import model.UserDTO;
 public class MemberList implements BbsController{
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDAO dao = new UserDAO();
 		ArrayList<UserDTO> list = dao.userList();
 		
-		System.out.println(list);
+		System.out.println("MemberList : " + list);
 		
 		request.setAttribute("list", list);
+		return "/WEB-INF/member/userList.jsp";
 	}
 
 	

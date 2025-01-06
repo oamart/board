@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<%@ include file="../include/header.jsp" %>
+
 	<div class="container mt-5 border p-5 shadow rounded w-75">
     <h3 class="text-center">글쓰기</h3>
     <form action="write.do" method="post">      
