@@ -54,6 +54,7 @@ public class FrontController extends HttpServlet {
 		
 		BbsController ctrl = actionMapping.get(paths[paths.length-1]);
 		String targetUri = null;
+		if (paths[paths.length-1].indexOf(".do") == -1) return;
 		if (ctrl != null) {
 			targetUri = ctrl.execute(request, response);
 		}
